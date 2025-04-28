@@ -1,0 +1,23 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run:
+          name: install required files
+          command: |
+            python -m venv division
+            . division/bin/activate
+            pip install -r requirements.txt
+      - run:
+          name: run test
+          command: |
+            . division/bin/activate
+            python -m pytest tests -v --cov
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
