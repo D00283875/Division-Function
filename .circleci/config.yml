@@ -18,9 +18,8 @@ jobs:
           command: |
             . division/bin/activate
             python -m pytest tests -v --cov
-      - store_test_results:
-          path: junit.xml
 workflows:
+  version: 2
   build-and-test:
     jobs:
       - build
